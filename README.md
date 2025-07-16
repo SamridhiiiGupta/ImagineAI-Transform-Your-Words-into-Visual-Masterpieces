@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Image Generator
 
 A web application that generates images based on text prompts using Stability AI's SDXL model through Replicate.
@@ -53,3 +54,7 @@ If you encounter any issues:
 1. Ensure your Replicate API token is valid and has sufficient credits
 2. Check the console for any error messages
 3. Make sure all dependencies are installed correctly 
+=======
+# Gen_AI_Project
+A model that converts Text to Images
+>>>>>>> bb2a4e87db4e4e8a2e9fa71f175a54fc7b6c1690
