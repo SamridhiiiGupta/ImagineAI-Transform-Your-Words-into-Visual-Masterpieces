@@ -1,60 +1,157 @@
-<<<<<<< HEAD
-# AI Image Generator
+# 🧠 ImagineAI — Transform Your Words into Visual Masterpieces 🎨
 
-A web application that generates images based on text prompts using Stability AI's SDXL model through Replicate.
+Welcome to the **AI Image Generator**, a Flask-based web application that uses **Stable Diffusion** via Hugging Face 🤗 Diffusers to create stunning images from simple text prompts.
 
-## Features
+<p align="center">
+  <img src="screencapture-127-0-0-1-5000-2025-07-17-01_37_59.png" alt="Homepage" width="100%"/>
+</p>
 
-- Simple and intuitive user interface
-- Real-time image generation
-- Powered by Stability AI's SDXL model
-- Responsive design
+---
 
-## Requirements
+## ✨ Features
 
-- Python 3.7+
-- Replicate API token
+- 🔤 Generate images from any creative prompt using Stable Diffusion
+- 🖼️ Interactive web interface with prompt input and image output
+- 🗂️ Gallery view to browse all generated images
+- 💾 Option to download images locally
+- ⚡ Fast, local image generation using PyTorch + Hugging Face + Diffusers
+- 🎨 Clean, responsive UI using Bootstrap
 
-## Setup
+---
 
-1. Clone the repository
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Set up your Replicate API token in the `.env` file:
-   ```
-   REPLICATE_API_TOKEN=your_replicate_api_token_here
-   ```
-   You can get an API token from [Replicate](https://replicate.com/) by creating an account.
-4. Run the application:
-   ```
-   python app.py
-   ```
-5. Open your web browser and go to `http://localhost:5000`
+## 🛠️ Tech Stack
 
-## Usage
+| Component       | Tech Used                      |
+|----------------|--------------------------------|
+| Backend         | Python, Flask                  |
+| Image Generation| Hugging Face Diffusers, Torch |
+| Frontend        | HTML, CSS, Bootstrap           |
+| Templating      | Jinja2                         |
+| Hosting         | Localhost (optional: deploy on Render, Heroku, etc.) |
 
-1. Enter a detailed text prompt in the text area
-2. Click the "Generate Image" button
-3. Wait for the image to be generated
-4. The generated image will be displayed below
+---
 
-## Notes
+## 🖼️ Screenshots
 
-- More detailed and specific prompts tend to yield better results
-- Image generation may take 10-30 seconds depending on the complexity of the prompt
-- The application uses Stability AI's SDXL model with a 1024x1024 resolution
-- A negative prompt is automatically applied to reduce common issues like poor quality and bad anatomy
+### 🔹 Homepage  
+Prompt input with clear interface and CTA.
 
-## Troubleshooting
+<p align="center">
+  <img src="screencapture-127-0-0-1-5000-2025-07-17-02_13_10.png" alt="Homepage Screenshot" width="80%">
+</p>
 
-If you encounter any issues:
+### 🔹 Gallery  
+View previously generated images.
 
-1. Ensure your Replicate API token is valid and has sufficient credits
-2. Check the console for any error messages
-3. Make sure all dependencies are installed correctly 
-=======
-# Gen_AI_Project
-A model that converts Text to Images
->>>>>>> bb2a4e87db4e4e8a2e9fa71f175a54fc7b6c1690
+<p align="center">
+  <img src="screencapture-127-0-0-1-5000-gallery-2025-07-17-01_38_12.png" alt="Gallery Screenshot" width="80%">
+</p>
+
+---
+
+## ⚙️ How to Run Locally
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/ai-image-generator.git
+cd ai-image-generator
+````
+
+### 2️⃣ Create and Activate Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate  # For Windows: venv\Scripts\activate
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+> Requirements include:
+>
+> * `flask`
+> * `torch`
+> * `transformers`
+> * `diffusers`
+> * `accelerate`
+> * `safetensors`
+
+### 4️⃣ Run the App
+
+```bash
+python app.py
+```
+
+You browser will automatically open at:
+👉 `http://127.0.0.1:5000`
+
+---
+
+## 🧪 Example Prompts
+
+| Prompt                                     | Output |
+| ------------------------------------------ | ------ |
+| "A futuristic city in the sky"             | 🏙️    |
+| "A mystical forest with glowing mushrooms" | 🌳     |
+| "A cyberpunk woman riding a dragon"        | 🐉     |
+
+---
+
+## 📁 Project Structure
+
+```
+ai-image-generator/
+│
+├── app.py
+├── static/
+│   ├── css/
+│   └── images/
+├── templates/
+│   ├── index.html
+│   └── gallery.html
+├── generated_images/
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## 📌 Future Enhancements
+
+* [ ] Image upscaling (via ESRGAN or Real-ESRGAN)
+* [ ] Prompt history with tags
+* [ ] User login and save images to profile
+* [ ] Deploy to Hugging Face Spaces / Streamlit / Render
+
+---
+
+## 🙌 Acknowledgments
+
+* 🤗 [Hugging Face Diffusers](https://huggingface.co/docs/diffusers/index)
+* 🔥 [PyTorch](https://pytorch.org/)
+* 🎨 [Bootstrap](https://getbootstrap.com/)
+
+---
+
+## 👩‍💻 Developed By
+
+**Samridhi Gupta**
+
+📧 [guptasamridhi1432@gmail.com](mailto:guptasamridhi1432@gmail.com)
+🔗 [LinkedIn]([https://www.linkedin.com/in/samridhi-gupta](https://www.linkedin.com/in/samridhiii-gupta/)) | [GitHub]([https://github.com/samridhi-07](https://github.com/SamridhiiiGupta))
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** – feel free to use, share, and improve.
+
+---
+
+🖤 *Made with Python, Passion & Pixels.*
+
+```
