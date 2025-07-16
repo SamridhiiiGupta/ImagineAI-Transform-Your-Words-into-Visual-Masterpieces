@@ -3,7 +3,7 @@
 Welcome to the **AI Image Generator**, a Flask-based web application that uses **Stable Diffusion** via Hugging Face 🤗 Diffusers to create stunning images from simple text prompts.
 
 <p align="center">
-  <img src="screencapture-127-0-0-1-5000-2025-07-17-01_37_59.png" alt="Homepage" width="100%"/>
+  <img src="ImagineAI Homepage.png" alt="Homepage" width="100%"/>
 </p>
 
 ---
@@ -37,14 +37,14 @@ Welcome to the **AI Image Generator**, a Flask-based web application that uses *
 Prompt input with clear interface and CTA.
 
 <p align="center">
-  <img src="screencapture-127-0-0-1-5000-2025-07-17-02_13_10.png" alt="Homepage Screenshot" width="80%">
+  <img src="ImagineAI Homepage 2.png" alt="Homepage Screenshot" width="80%">
 </p>
 
 ### 🔹 Gallery  
 View previously generated images.
 
 <p align="center">
-  <img src="screencapture-127-0-0-1-5000-gallery-2025-07-17-01_38_12.png" alt="Gallery Screenshot" width="80%">
+  <img src="ImagineAI Gallery.png" alt="Gallery Screenshot" width="80%">
 </p>
 
 ---
