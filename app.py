@@ -100,5 +100,9 @@ def gallery():
     return render_template("gallery.html", images=image_urls)
 
 
+import threading
+import webbrowser
+
 if __name__ == "__main__":
+    threading.Timer(1.5, lambda: webbrowser.open("http://127.0.0.1:5000")).start()
     app.run(debug=DEBUG_MODE, host="0.0.0.0", port=5000)
