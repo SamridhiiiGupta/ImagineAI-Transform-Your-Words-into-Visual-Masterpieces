@@ -2,7 +2,6 @@ import os
 import uuid
 import requests
 
-import replicate
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 
@@ -10,17 +9,17 @@ load_dotenv()
 
 app = Flask(__name__)
 
-STATIC_FOLDER   = "static"
-MAX_PROMPT_LEN  = 500
-DEBUG_MODE      = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
-REPLICATE_TOKEN = os.environ.get("REPLICATE_API_TOKEN", "")
+STATIC_FOLDER  = "static"
+MAX_PROMPT_LEN = 500
+DEBUG_MODE     = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+HF_TOKEN       = os.environ.get("HF_TOKEN", "")
 
 app.config["UPLOAD_FOLDER"] = STATIC_FOLDER
 
-SD_MODEL = "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4"
+HF_API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1"
 
-if not REPLICATE_TOKEN:
-    print("[WARN] REPLICATE_API_TOKEN is not set. /generate-image will fail.")
+if not HF_TOKEN:
+    print("[WARN] HF_TOKEN is not set. /generate-image will fail.")
 
 
 @app.route("/", methods=["GET"])
@@ -45,38 +44,37 @@ def generate_image():
             "error": f"Prompt must be under {MAX_PROMPT_LEN} characters."
         }), 400
 
-    if not REPLICATE_TOKEN:
+    if not HF_TOKEN:
         return jsonify({
             "success": False,
-            "error": "Server is not configured with a Replicate API token."
+            "error": "Server is not configured with a HuggingFace token."
         }), 503
 
-    print(f"[INFO] Calling Replicate API for prompt: '{prompt[:80]}'")
+    print(f"[INFO] Calling HuggingFace API for prompt: '{prompt[:80]}'")
 
     try:
-        output = replicate.run(
-            SD_MODEL,
-            input={
-                "prompt": prompt,
-                "guidance_scale": 7.5,
-                "num_inference_steps": 30,
-                "width": 512,
-                "height": 512,
-            }
+        response = requests.post(
+            HF_API_URL,
+            headers={"Authorization": f"Bearer {HF_TOKEN}"},
+            json={"inputs": prompt},
+            timeout=120
         )
 
-        image_url_remote = output[0] if output else None
-        if not image_url_remote:
-            raise ValueError("No image returned from Replicate.")
+        if response.status_code == 503:
+            return jsonify({
+                "success": False,
+                "error": "Model is loading, please try again in 20 seconds."
+            }), 503
+
+        if response.status_code != 200:
+            print(f"[ERROR] HF API returned {response.status_code}: {response.text}")
+            return jsonify({"success": False, "error": "Image generation failed. Please try again."}), 500
 
         filename = f"generated_{uuid.uuid4().hex[:8]}.png"
         save_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
 
-        img_response = requests.get(image_url_remote, timeout=30)
-        img_response.raise_for_status()
-
         with open(save_path, "wb") as f:
-            f.write(img_response.content)
+            f.write(response.content)
 
         return jsonify({"success": True, "image_url": f"/static/{filename}"})
 
