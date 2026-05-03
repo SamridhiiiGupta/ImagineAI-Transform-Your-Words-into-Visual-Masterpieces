@@ -16,7 +16,7 @@ HF_TOKEN       = os.environ.get("HF_TOKEN", "")
 
 app.config["UPLOAD_FOLDER"] = STATIC_FOLDER
 
-HF_API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1"
+HF_API_URL = "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-2-1"
 
 if not HF_TOKEN:
     print("[WARN] HF_TOKEN is not set. /generate-image will fail.")
